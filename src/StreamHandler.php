@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace Amp\Log;
+namespace Wpjscc\Log;
 
-use Amp\ByteStream\WritableStream;
+use React\Stream\WritableStreamInterface;
 use Monolog\Handler\AbstractProcessingHandler;
 use Monolog\Level;
 use Monolog\LogRecord;
@@ -10,14 +10,14 @@ use Psr\Log\LogLevel;
 
 final class StreamHandler extends AbstractProcessingHandler
 {
-    private WritableStream $sink;
+    private WritableStreamInterface $sink;
 
     /**
-     * @param WritableStream $sink Stream to write the logs to
+     * @param WritableStreamInterface $sink Stream to write the logs to
      * @param Level|value-of<Level>|LogLevel::* $level The minimum logging level at which this handler will be triggered
      * @param bool $bubble Whether the messages that are handled can bubble up the stack or not
      */
-    public function __construct(WritableStream $sink, int|string|Level $level = LogLevel::DEBUG, bool $bubble = true)
+    public function __construct(WritableStreamInterface $sink, int|string|Level $level = LogLevel::DEBUG, bool $bubble = true)
     {
         /** @psalm-suppress PossiblyInvalidArgument */
         parent::__construct($level, $bubble);

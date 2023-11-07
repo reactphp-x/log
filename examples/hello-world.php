@@ -1,13 +1,13 @@
 <?php declare(strict_types=1);
 
-use Amp\ByteStream;
-use Amp\Log\ConsoleFormatter;
-use Amp\Log\StreamHandler;
+use React\Stream;
+use Wpjscc\Log\ConsoleFormatter;
+use Wpjscc\Log\StreamHandler;
 use Monolog\Logger;
 
 require dirname(__DIR__) . '/vendor/autoload.php';
 
-$handler = new StreamHandler(ByteStream\getStdout());
+$handler = new StreamHandler(new Stream\WritableResourceStream(STDOUT));
 $handler->setFormatter(new ConsoleFormatter());
 
 $logger = new Logger('hello-world');

@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Amp\Log;
+namespace Wpjscc\Log;
 
 use Monolog\Formatter\LineFormatter;
 use Monolog\LogRecord;
@@ -64,7 +64,7 @@ final class ConsoleFormatter extends LineFormatter
 
     private function determineAnsiColorOption(): bool
     {
-        $value = \getenv("AMP_LOG_COLOR");
+        $value = \getenv("REACTPHP_LOG_COLOR");
         if ($value === false || $value === '') {
             $value = "auto";
         }

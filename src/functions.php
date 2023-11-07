@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Amp\Log;
+namespace Wpjscc\Log;
 
 function hasColorSupport(): bool
 {

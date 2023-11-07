@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 
-use Amp\File;
-use Amp\Log\StreamHandler;
+use Wpjscc\Log\FileWriteStream;
+use Wpjscc\Log\StreamHandler;
 use Monolog\Formatter\LineFormatter;
 use Monolog\Logger;
 
@@ -9,7 +9,7 @@ require dirname(__DIR__) . '/vendor/autoload.php';
 
 // This example requires amphp/file to be installed.
 
-$file = File\openFile(__DIR__ . '/example.log', 'w');
+$file = new FileWriteStream(__DIR__ . '/example.log', true);
 
 $handler = new StreamHandler($file);
 $handler->setFormatter(new LineFormatter());

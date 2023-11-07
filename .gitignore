@@ -2,7 +2,7 @@
 /.phpunit.result.cache
 /build
 /composer.lock
-/examples/example.log
+/examples/*.log
 /phpunit.xml
 /vendor
 /composer-require-checker.phar

@@ -1,7 +1,7 @@
 {
     "name": "wpjscc/reactphp-log",
-    "homepage": "https://github.com/amphp/log",
-    "description": "Non-blocking logging for PHP based on Amp, Revolt, and Monolog.",
+    "homepage": "https://github.com/wpjscc/reactphp-log",
+    "description": "Non-blocking logging for PHP based on reactphp, and Monolog.",
     "keywords": [
         "log",
         "logging",

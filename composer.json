@@ -22,7 +22,7 @@
         "monolog/monolog": "^3|^2|^1.23",
         "psr/log": "^3|^2|^1",
         "react/stream": "^1.3",
-        "react/filesystem": "^0.2@dev"
+        "wpjscc/filesystem": "^0.2@dev"
     },
     "require-dev": {
         "phpunit/phpunit": "^9"

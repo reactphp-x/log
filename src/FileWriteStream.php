@@ -20,13 +20,16 @@ class FileWriteStream extends EventEmitter implements WritableStreamInterface
 
     private $handling = false;
 
+    private $mode = \FILE_APPEND;
+
     private $datas = [];
 
 
-    public function __construct($path, $date = false)
+    public function __construct($path, $mode = \FILE_APPEND, $date = false)
     {
         $this->filesystem = Factory::create();
         $this->path = $path;
+        $this->mode = $mode;
         $this->date = $date;
     }
 
@@ -64,7 +67,7 @@ class FileWriteStream extends EventEmitter implements WritableStreamInterface
         $data = \array_shift($this->datas);
 
         $this->filesystem->file($this->getFilePath())
-            ->putContents($data, \FILE_APPEND)
+            ->putContents($data, $this->mode)
             ->then(function () {
                 $this->handling = false;
                 $this->handle();

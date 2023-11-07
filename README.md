@@ -1,8 +1,8 @@
 
-# wpjscc/log
+# wpjscc/reactphp-log
 
 reactphp is a collection of event-driven libraries for PHP designed with fibers and concurrency in mind.
-`wpjscc/log` provides a non-blocking stream handler for `monolog/monolog`.
+`wpjscc/reactphp-log` provides a non-blocking stream handler for `monolog/monolog`.
 
 [![Release](https://img.shields.io/github/release/amphp/log.svg?style=flat-square)](https://github.com/amphp/log/releases)
 ![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)
@@ -12,7 +12,7 @@ reactphp is a collection of event-driven libraries for PHP designed with fibers 
 This package can be installed as a [Composer](https://getcomposer.org/) dependency.
 
 ```bash
-composer require wpjscc/log
+composer require wpjscc/reactphp-log -vvv
 ```
 
 ## Usage
@@ -23,12 +23,12 @@ composer require wpjscc/log
 use React\Stream;
 use Wpjscc\Log\ConsoleFormatter;
 use Wpjscc\Log\StreamHandler;
+use Wpjscc\Log\FileWriteStream;
 use Monolog\Logger;
 
 require dirname(__DIR__) . '/vendor/autoload.php';
 
-// You can also log to a file using amphp/file:
-// $handler = new StreamHandler(File\openFile(__DIR__ . '/example.log', 'w'));
+// $handler = new StreamHandler(new FileWriteStream(__DIR__ . '/example.log'));
 
 // Here we'll log to the standard output stream of the current process:
 $handler = new StreamHandler(new Stream\WritableResourceStream(STDOUT));

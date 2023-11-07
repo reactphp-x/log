@@ -9,7 +9,7 @@ require dirname(__DIR__) . '/vendor/autoload.php';
 
 // This example requires amphp/file to be installed.
 
-$file = new FileWriteStream(__DIR__ . '/example.log', true);
+$file = new FileWriteStream(__DIR__ . '/example.log');
 
 $handler = new StreamHandler($file);
 $handler->setFormatter(new LineFormatter());

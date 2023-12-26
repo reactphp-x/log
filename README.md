@@ -21,9 +21,9 @@ composer require wpjscc/reactphp-log -vvv
 <?php
 
 use React\Stream;
-use Wpjscc\Log\ConsoleFormatter;
-use Wpjscc\Log\StreamHandler;
-use Wpjscc\Log\FileWriteStream;
+use Reactphp\Framework\Log\ConsoleFormatter;
+use Reactphp\Framework\Log\StreamHandler;
+use Reactphp\Framework\Log\FileWriteStream;
 use Monolog\Logger;
 
 require dirname(__DIR__) . '/vendor/autoload.php';

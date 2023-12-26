@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 
-use Wpjscc\Log\FileWriteStream;
-use Wpjscc\Log\StreamHandler;
+use Reactphp\Framework\Log\FileWriteStream;
+use Reactphp\Framework\Log\StreamHandler;
 use Monolog\Formatter\LineFormatter;
 use Monolog\Logger;
 

@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Wpjscc\Log;
+namespace Reactphp\Framework\Log;
 
 use Monolog\Formatter\LineFormatter;
 use Monolog\LogRecord;

@@ -1,6 +1,6 @@
 {
-    "name": "reactphp-framework/log",
-    "homepage": "https://github.com/reactphp-framework/log",
+    "name": "reactphp-x/log",
+    "homepage": "https://github.com/reactphp-x/log",
     "description": "Non-blocking logging for PHP based on reactphp, and Monolog.",
     "keywords": [
         "log",
@@ -29,7 +29,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Reactphp\\Framework\\Log\\": "src"
+            "ReactphpX\\Log\\": "src"
         },
         "files": [
             "src/functions.php"

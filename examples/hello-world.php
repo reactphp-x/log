@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
 use React\Stream;
-use Reactphp\Framework\Log\ConsoleFormatter;
-use Reactphp\Framework\Log\StreamHandler;
+use ReactphpX\Log\ConsoleFormatter;
+use ReactphpX\Log\StreamHandler;
 use Monolog\Logger;
 
 require dirname(__DIR__) . '/vendor/autoload.php';

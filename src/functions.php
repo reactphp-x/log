@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Reactphp\Framework\Log;
+namespace ReactphpX\Log;
 
 function hasColorSupport(): bool
 {

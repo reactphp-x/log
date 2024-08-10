@@ -1,6 +1,6 @@
 <?php
 
-namespace Reactphp\Framework\Log;
+namespace ReactphpX\Log;
 
 use React\Stream\WritableStreamInterface;
 use React\Filesystem\Factory;

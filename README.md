@@ -43,3 +43,37 @@ $logger->notice("Hello, world!");
 $logger->error("Hello, world!");
 $logger->alert("Hello, world!");
 ```
+
+## Facade (Laravel-like) Usage
+
+```php
+<?php
+
+use ReactphpX\Log\Log;
+
+require dirname(__DIR__) . '/vendor/autoload.php';
+
+// Minimal usage (defaults to stdout)
+Log::info('Hello from Log facade');
+Log::error('Something went wrong', ['code' => 123]);
+
+// Optional: configure channels
+Log::configure([
+    'default' => 'stdout',
+    'channels' => [
+        'single' => ['driver' => 'single', 'path' => __DIR__ . '/example.log', 'formatter' => 'line'],
+        'stdout' => ['driver' => 'stdout', 'formatter' => 'console'],
+        'stderr' => ['driver' => 'stderr', 'formatter' => 'console'],
+        'stacked' => ['driver' => 'stack', 'channels' => ['stdout', 'single']],
+    ],
+]);
+
+Log::channel('single')->warning('This goes to a file');
+Log::stack(['stdout', 'single'])->notice('This appears in both stdout and file');
+```
+
+### Run the example
+
+```bash
+php examples/log-facade.php
+```

@@ -17,7 +17,10 @@ $handler->setFormatter(new LineFormatter());
 $logger = new Logger('hello-world');
 $logger->pushHandler($handler);
 
-$logger->debug("Hello, world!");
+$logger->debug("Hello, world!", [
+    'context' => 'context',
+    'extra' => 'extra',
+]);
 $logger->info("Hello, world!");
 $logger->notice("Hello, world!");
 $logger->warning("Hello, world!");

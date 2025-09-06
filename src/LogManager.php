@@ -100,7 +100,9 @@ final class LogManager
     private function createStreamLogger(string $name, \React\Stream\WritableStreamInterface $sink, array $config): LoggerInterface
     {
         $logger = new Logger($name);
-        $handler = new StreamHandler($sink);
+        $level = $this->resolveLevel((string)($config['level'] ?? 'debug'));
+        $bubble = (bool)($config['bubble'] ?? true);
+        $handler = new StreamHandler($sink, $level, $bubble);
         $this->applyFormatter($handler, (string) ($config['formatter'] ?? 'console'));
         $logger->pushHandler($handler);
 
@@ -113,7 +115,9 @@ final class LogManager
     private function createFileLogger(string $name, string $path, array $config): LoggerInterface
     {
         $logger = new Logger($name);
-        $handler = new StreamHandler(new FileWriteStream($path, $config['adapter'] ?? null));
+        $level = $this->resolveLevel((string)($config['level'] ?? 'debug'));
+        $bubble = (bool)($config['bubble'] ?? true);
+        $handler = new StreamHandler(new FileWriteStream($path, $config['adapter'] ?? null), $level, $bubble);
         $this->applyFormatter($handler, (string) ($config['formatter'] ?? 'line'));
         $logger->pushHandler($handler);
 
@@ -149,16 +153,22 @@ final class LogManager
             'channels' => [
                 'stdout' => [
                     'driver' => 'stdout',
+                    'level' => 'debug',
+                    'bubble' => true,
                     'formatter' => 'console',
                 ],
                 'stderr' => [
                     'driver' => 'stderr',
+                    'level' => 'debug',
+                    'bubble' => true,
                     'formatter' => 'console',
                 ],
                 'single' => [
                     'driver' => 'single',
                     'path' => \sys_get_temp_dir() . '/reactphp.log',
                     'adapter' => null,
+                    'level' => 'debug',
+                    'bubble' => true,
                     'formatter' => 'line',
                 ],
             ],
@@ -168,6 +178,25 @@ final class LogManager
         $merged = \array_replace_recursive($default, $config);
 
         return $merged;
+    }
+
+    /**
+     * @return int|string|\Monolog\Level
+     */
+    private function resolveLevel(string $level): int|string|\Monolog\Level
+    {
+        $normalized = \strtolower($level);
+        return match ($normalized) {
+            'debug' => \Psr\Log\LogLevel::DEBUG,
+            'info' => \Psr\Log\LogLevel::INFO,
+            'notice' => \Psr\Log\LogLevel::NOTICE,
+            'warning', 'warn' => \Psr\Log\LogLevel::WARNING,
+            'error' => \Psr\Log\LogLevel::ERROR,
+            'critical', 'crit' => \Psr\Log\LogLevel::CRITICAL,
+            'alert' => \Psr\Log\LogLevel::ALERT,
+            'emergency', 'emerg' => \Psr\Log\LogLevel::EMERGENCY,
+            default => \Psr\Log\LogLevel::DEBUG,
+        };
     }
 }
 

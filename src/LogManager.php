@@ -113,7 +113,7 @@ final class LogManager
     private function createFileLogger(string $name, string $path, array $config): LoggerInterface
     {
         $logger = new Logger($name);
-        $handler = new StreamHandler(new FileWriteStream($path));
+        $handler = new StreamHandler(new FileWriteStream($path, $config['adapter'] ?? null));
         $this->applyFormatter($handler, (string) ($config['formatter'] ?? 'line'));
         $logger->pushHandler($handler);
 
@@ -158,6 +158,7 @@ final class LogManager
                 'single' => [
                     'driver' => 'single',
                     'path' => \sys_get_temp_dir() . '/reactphp.log',
+                    'adapter' => null,
                     'formatter' => 'line',
                 ],
             ],

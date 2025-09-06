@@ -3,6 +3,7 @@
 require dirname(__DIR__) . '/vendor/autoload.php';
 
 use ReactphpX\Log\Log;
+use React\Filesystem\Factory;
 
 // Configure channels (optional, sensible defaults exist)
 Log::configure([
@@ -11,6 +12,7 @@ Log::configure([
         'single' => [
             'driver' => 'single',
             'path' => __DIR__ . '/example.log',
+            'adapter' => Factory::create(),
             'formatter' => 'line',
         ],
         'stdout' => [

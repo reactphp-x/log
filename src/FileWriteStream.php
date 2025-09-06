@@ -4,6 +4,7 @@ namespace ReactphpX\Log;
 
 use React\Stream\WritableStreamInterface;
 use React\Filesystem\Factory;
+use React\Filesystem\AdapterInterface;
 use Evenement\EventEmitter;
 
 class FileWriteStream extends EventEmitter implements WritableStreamInterface
@@ -16,8 +17,8 @@ class FileWriteStream extends EventEmitter implements WritableStreamInterface
     private $closed = false;
     
 
-    public function __construct($path, ?\React\Filesystem\AdapterInterface $adapter = null)
-    {
+    public function __construct($path, ?AdapterInterface $adapter = null)
+    {   
         $this->filesystem = $adapter ?? Factory::create();
         $this->path = $path;
     }
